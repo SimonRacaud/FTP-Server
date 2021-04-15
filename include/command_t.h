@@ -32,6 +32,4 @@ typedef struct command {
     bool need_auth;
 } command_t;
 
-
-
 #endif // COMMAND_T_H

@@ -9,6 +9,8 @@ DSRC	=	./src/
 
 SRC_FILES	=	main.c					\
 				commands/commands.c		\
+				server/response.c		\
+				app/account.c			\
 
 SRC	=	$(addprefix $(DSRC), $(SRC_FILES))
 

@@ -9,6 +9,7 @@
 #define ACCOUNT_T_H
 
 #include <stdbool.h>
+#include <stdlib.h>
 
 typedef struct account {
     char *username;
