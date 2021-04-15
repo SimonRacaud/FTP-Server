@@ -26,6 +26,11 @@ SRC_FILES	=	main.c					\
 				server/connection/connection_list_add.c		\
 				server/connection/connection_list_destroy.c	\
 				server/connection/connection_list_remove.c	\
+				server/dchannel/dchannel_create.c			\
+				server/dchannel/dchannel_destroy.c			\
+				server/dchannel/dchannel_list_add.c			\
+				server/dchannel/dchannel_list_destroy.c		\
+				server/dchannel/dchannel_list_remove.c		\
 
 
 SRC	=	$(addprefix $(DSRC), $(SRC_FILES))
