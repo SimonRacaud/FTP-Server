@@ -13,4 +13,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#include "app_t.h"
+
 #endif /* !APP_H_ */

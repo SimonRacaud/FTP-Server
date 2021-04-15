@@ -7,13 +7,14 @@
 
 DSRC	=	./src/
 
-SRC_FILES	=	main.c		\
+SRC_FILES	=	main.c					\
+				commands/commands.c		\
 
 SRC	=	$(addprefix $(DSRC), $(SRC_FILES))
 
 OBJ	=	$(SRC:.c=.o)
 
-NAME	=	exec.out
+NAME	=	myftp
 
 CFLAGS	+= -Wall -Wextra -W $(INCLUDE) #-Werror
 
@@ -25,7 +26,7 @@ debug: all
 all:  $(NAME)
 
 $(NAME): $(OBJ)
-	@gcc -o $(NAME) $(OBJ) && \
+	@$(CC) -o $(NAME) $(OBJ) && \
 		$(ECHO) $(BOLD_T)$(GREEN_C)"\n[✔] COMPILED:" $(DEFAULT)$(LIGHT_GREEN) "$(NAME)\n"$(DEFAULT) || \
 		$(ECHO) $(BOLD_T)$(RED_C)"[✘] "$(UNDLN_T)"BUILD FAILED:" $(LIGHT_RED) "$(NAME)\n"$(DEFAULT)
 
