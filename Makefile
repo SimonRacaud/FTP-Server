@@ -21,6 +21,11 @@ SRC_FILES	=	main.c					\
 				socket/socket_server_connect.c	\
 				socket/socket_server_create.c	\
 				socket/socket_server_select.c	\
+				server/connection/connection_create.c		\
+				server/connection/connection_destroy.c		\
+				server/connection/connection_list_add.c		\
+				server/connection/connection_list_destroy.c	\
+				server/connection/connection_list_remove.c	\
 
 
 SRC	=	$(addprefix $(DSRC), $(SRC_FILES))
