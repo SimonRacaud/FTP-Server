@@ -15,7 +15,7 @@
 typedef struct connection {
     socket_t sock;
     session_t session;
-    data_channel_t *channel_list;
+    data_channel_t **channel_list;
     char *workdir;
 } connection_t;
 

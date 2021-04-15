@@ -12,7 +12,7 @@
 #include "server_t.h"
 
 typedef struct application {
-    account_t *account_list;
+    account_t **account_list;
     server_t server;
 } app_t;
 

@@ -8,9 +8,20 @@
 DSRC	=	./src/
 
 SRC_FILES	=	main.c					\
+				usage.c					\
+				app/arg_parser.c		\
 				commands/commands.c		\
 				server/response.c		\
+				server/server_create.c	\
 				app/account.c			\
+				socket/socket_send.c			\
+				socket/socket_client_connect.c	\
+				socket/socket_close.c			\
+				socket/socket_receive.c			\
+				socket/socket_server_connect.c	\
+				socket/socket_server_create.c	\
+				socket/socket_server_select.c	\
+
 
 SRC	=	$(addprefix $(DSRC), $(SRC_FILES))
 

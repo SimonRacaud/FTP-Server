@@ -24,7 +24,7 @@ typedef struct server_select {
 typedef struct server {
     socket_t sock;
     uint max_client;
-    connection_t *clients;
+    connection_t **clients;
     select_t select;
 } server_t;
 
