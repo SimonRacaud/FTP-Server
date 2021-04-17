@@ -7,7 +7,7 @@
 
 #include "response_t.h"
 
-const char *RESPONSE_CODE[NB_RESPONSE + 1] = {
+const char *RESPONSE_CODE[] = {
     "120",
     "125",
     "150",
@@ -24,6 +24,8 @@ const char *RESPONSE_CODE[NB_RESPONSE + 1] = {
     "550",
     "530",
     "425",
+    "331",
+    "503",
     "\0\0\0"
 };
 

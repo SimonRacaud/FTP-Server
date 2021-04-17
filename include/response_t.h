@@ -11,8 +11,6 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-#define NB_RESPONSE 16
-
 typedef enum response_code {
     C120 = 0,
     C125 = 1,
@@ -30,6 +28,8 @@ typedef enum response_code {
     C550 = 13,
     C530 = 14,
     C425 = 15,
+    C331 = 16,
+    C503 = 17,
     CNO
 } code_e;
 
