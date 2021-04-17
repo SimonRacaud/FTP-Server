@@ -14,6 +14,7 @@
 typedef struct application {
     account_t **account_list;
     server_t server;
+    bool loop;
 } app_t;
 
 #endif // APP_T_H
