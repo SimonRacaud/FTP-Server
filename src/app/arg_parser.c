@@ -33,7 +33,7 @@ static bool is_number(const char *str)
 int arg_parser(int argc, char **argv, args_t *dest)
 {
     if (show_help(argc, argv)) {
-        return usage(EXIT_SUCCESS, argv[0]);
+        exit(usage(EXIT_SUCCESS, argv[0]));
     }
     if (!dest || argc != 3 || is_number(argv[1]) == false) {
         return EXIT_FAILURE;
