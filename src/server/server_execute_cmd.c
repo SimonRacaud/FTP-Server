@@ -30,7 +30,7 @@ int server_execute_cmd(app_t *app, connection_t *client, cmd_t *request)
             return exit_status;
         }
     }
-    // TODO : command not found
-    printf("debug: command (%s) not found\n", request->label);
+    if (send_response(&client->sock, C500, "Unknown command."))
+        return EXIT_FAILURE;
     return exit_status;
 }
