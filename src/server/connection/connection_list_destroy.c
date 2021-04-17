@@ -9,10 +9,12 @@
 
 int connection_list_destroy(connection_t **list)
 {
-    for (size_t i = 0; list[i] != NULL; i++) {
+    for (size_t i = 0; list && list[i] != NULL; i++) {
         if (connection_destroy(list[i]))
             return EXIT_FAILURE;
     }
-    free(list);
+    if (list != NULL) {
+        free(list);
+    }
     return EXIT_SUCCESS;
 }

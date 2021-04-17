@@ -5,7 +5,7 @@
 ** 15/04/2021 connection_destroy.c
 */
 
-#include "app.h"
+#include "server.h"
 #include "socket.h"
 
 int connection_destroy(connection_t *conn)
@@ -14,7 +14,8 @@ int connection_destroy(connection_t *conn)
         return EXIT_FAILURE;
     free(conn->workdir);
     if (conn->channel_list != NULL) {
-        // TODO : data channel list destroy
+        if (dchannel_list_destroy(conn->channel_list) == EXIT_FAILURE)
+            return EXIT_FAILURE;
     }
     free(conn);
     return EXIT_SUCCESS;
