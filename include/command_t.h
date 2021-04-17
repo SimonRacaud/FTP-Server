@@ -18,13 +18,12 @@
 
 typedef struct cmd {
     char *label;
-    char **argv;
-    size_t argc;
+    char *argv;
 } cmd_t;
 
 // Available command description
 
-typedef response_t *(* cmd_func)(app_t *, connection_t *, cmd_t *);
+typedef int (* cmd_func)(app_t *, connection_t *, cmd_t *);
 
 typedef struct command {
     char *label;
