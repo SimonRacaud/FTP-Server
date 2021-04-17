@@ -9,11 +9,13 @@ DSRC	=	./src/
 
 SRC_FILES	=	main.c					\
 				usage.c					\
-				app/arg_parser.c		\
 				commands/commands.c		\
-				server/response.c		\
-				server/server_create.c	\
+				app/arg_parser.c		\
+				app/app_destroy.c		\
+				app/app_init.c			\
+				app/app_loop.c			\
 				app/account.c			\
+				app/signal_init.c		\
 				socket/socket_send.c			\
 				socket/socket_client_connect.c	\
 				socket/socket_close.c			\
@@ -23,7 +25,7 @@ SRC_FILES	=	main.c					\
 				socket/socket_server_select.c	\
 				server/connection/connection_create.c		\
 				server/connection/connection_destroy.c		\
-				server/connection/connection_list_add.c		\
+				server/connection/connection_list_push.c	\
 				server/connection/connection_list_destroy.c	\
 				server/connection/connection_list_remove.c	\
 				server/dchannel/dchannel_create.c			\
@@ -31,7 +33,17 @@ SRC_FILES	=	main.c					\
 				server/dchannel/dchannel_list_add.c			\
 				server/dchannel/dchannel_list_destroy.c		\
 				server/dchannel/dchannel_list_remove.c		\
-
+				server/dchannel/server_dchannel_requests_process.c	\
+				server/response.c							\
+               	server/server_create.c						\
+               	server/server_destroy.c						\
+               	server/server_client_manager.c				\
+               	server/server_client_requests_process.c		\
+               	server/server_connect_client.c				\
+               	server/server_execute_cmd.c					\
+               	server/request/cmd_create.c					\
+               	server/request/cmd_destroy.c				\
+               	server/request/get_request.c				\
 
 SRC	=	$(addprefix $(DSRC), $(SRC_FILES))
 
