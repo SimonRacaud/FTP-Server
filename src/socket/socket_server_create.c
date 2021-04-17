@@ -7,6 +7,13 @@
 
 #include "socket.h"
 
+static void debug(const uint port)
+{
+    #ifdef DEBUG
+    fprintf(stderr, "Server is listening on port %u.\n", port);
+    #endif
+}
+
 static int socket_bind(socket_t *sock, uint port)
 {
     sock->conf.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -41,5 +48,6 @@ int socket_server_create(socket_t *sock, uint port, uint max_client)
         perror("listen()");
         return EXIT_FAILURE;
     }
+    debug(port);
     return EXIT_SUCCESS;
 }

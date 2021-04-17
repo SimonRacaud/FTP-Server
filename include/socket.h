@@ -19,6 +19,15 @@
 #include "connection_t.h"
 #include "server_t.h"
 
+#ifdef EXIT_FAILURE
+#undef EXIT_FAILURE
+#endif
+#define EXIT_FAILURE 84
+
+#define RANDOM_PORT 0
+
+#define DEBUG 1
+
 #define TO_PROCESS(connection, fds) FD_ISSET(connection->sock.fd, &fds)
 
 int socket_server_create(socket_t *sock, uint port, uint max_client);
