@@ -12,6 +12,13 @@ extern const command_t COMMANDS[];
 static int call_command(
     app_t *app, connection_t *client, cmd_t *request, size_t idx)
 {
+    if (COMMANDS[idx].need_auth == true
+        && client->session.is_logged == false) {
+        if (send_response(
+                &client->sock, C530, "Please login with USER and PASS."))
+            return EXIT_FAILURE;
+        return EXIT_SUCCESS;
+    }
     if (COMMANDS[idx].func) {
         return COMMANDS[idx].func(app, client, request);
     }
