@@ -29,6 +29,9 @@ int server_client_manager(app_t *app, connection_t *client);
 int server_connect_client(server_t *server);
 int server_dchannel_requests_process(select_t *select, connection_t **clients);
 
+// RESPONSE
+int send_response(socket_t *sock, code_e code, const char *message);
+
 // COMMAND
 cmd_t *cmd_create(const char *command);
 void cmd_destroy(cmd_t *cmd);

@@ -30,15 +30,15 @@ const char *RESPONSE_CODE[NB_RESPONSE + 1] = {
 const response_t RESPONSES[] = {
     {
         .code = C120,
-        .message = "Service ready in nnn minutes"
+        .message = "Service ready in nnn minutes."
     },
     {
         .code = C125,
-        .message = "Data connection open; transfer starting"
+        .message = "Data client open; transfer starting."
     },
     {
         .code = C150,
-        .message = "File status okay; about to open data connection."
+        .message = "File status okay; about to open data client."
     },
     {
         .code = C200,
@@ -46,7 +46,7 @@ const response_t RESPONSES[] = {
     },
     {
         .code = C220,
-        .message = "Service ready for new user",
+        .message = "Service ready for new user.",
     },
     {
         .code = C221,
@@ -54,7 +54,7 @@ const response_t RESPONSES[] = {
     },
     {
         .code = C226,
-        .message = "Closing data connection. "
+        .message = "Closing data client. "
                    "Requested file action successful.",
     },
     {
