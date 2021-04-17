@@ -7,6 +7,7 @@
 
 #include "app.h"
 #include <signal.h>
+#include "socket.h"
 
 static void exit_action(bool *ptr)
 {
@@ -22,6 +23,9 @@ static void exit_action(bool *ptr)
 static void signal_handler(__attribute__((unused))int code)
 {
     exit_action(NULL);
+    #ifdef DEBUG
+    fprintf(stderr, "SIGNINT : exit.\n");
+    #endif
 }
 
 int signal_init(app_t *app)

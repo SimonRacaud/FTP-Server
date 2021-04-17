@@ -42,7 +42,8 @@ int account_init(app_t *app, const char *default_path)
     return EXIT_SUCCESS;
 }
 
-void account_destroy(app_t *app) {
+void account_destroy(app_t *app)
+{
     for (size_t i = 0; app->account_list[i]; i++) {
         free(app->account_list[i]->home_path);
         free(app->account_list[i]);
