@@ -31,6 +31,7 @@ int server_dchannel_requests_process(select_t *select, connection_t **clients);
 
 // RESPONSE
 int send_response(socket_t *sock, code_e code, const char *message);
+int send_raw_message(socket_t *sock, const char *message);
 
 // COMMAND
 cmd_t *cmd_create(const char *command);
