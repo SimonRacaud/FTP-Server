@@ -17,6 +17,7 @@ typedef enum data_channel_mode {
 
 typedef struct data_channel {
     socket_t sock;
+    socket_t passive_server;
     channel_mode_e mode;
 } data_channel_t;
 
