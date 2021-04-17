@@ -13,8 +13,9 @@
 #include "account_t.h"
 
 typedef struct session {
+    char *username;
     account_t *account_ptr;
-    bool is_fully_logged;
+    bool is_logged;
 } session_t;
 
 #endif // SESSION_T_H
