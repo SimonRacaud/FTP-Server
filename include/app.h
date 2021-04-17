@@ -22,6 +22,7 @@
     #undef EXIT_FAILURE
 #endif
 #define EXIT_FAILURE 84
+#define EXIT_QUIT 42
 
 // Core
 int arg_parser(int argc, char **argv, args_t *dest);

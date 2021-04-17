@@ -5,23 +5,23 @@
 ** 15/04/2021 commands.c
 */
 
-#include "command_t.h"
+#include "command.h"
 
 const command_t COMMANDS[] = {
     {
         .label = "USER",
-        .func = NULL,
+        .func = &command_user,
         .need_auth = false
     },
     {
         .label = "PASS",
-        .func = NULL,
+        .func = &command_pass,
         .need_auth = false
     },
     {
         .label = "QUIT",
-        .func = NULL,
-        .need_auth = true
+        .func = &command_quit,
+        .need_auth = false
     },
     {
         .label = "CWD",
@@ -45,12 +45,12 @@ const command_t COMMANDS[] = {
     },
     {
         .label = "HELP",
-        .func = NULL,
+        .func = &command_help,
         .need_auth = true
     },
     {
         .label = "NOOP",
-        .func = NULL,
+        .func = &command_noop,
         .need_auth = true
     },
     {

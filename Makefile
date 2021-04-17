@@ -44,7 +44,13 @@ SRC_FILES	=	main.c					\
                	server/request/cmd_destroy.c				\
                	server/request/get_request.c				\
                	server/response/send_response.c				\
+               	server/response/send_raw_message.c			\
 				server/response/response.c					\
+				commands/command_help.c						\
+				commands/command_noop.c						\
+				commands/command_pass.c						\
+				commands/command_quit.c						\
+				commands/command_user.c						\
 
 SRC	=	$(addprefix $(DSRC), $(SRC_FILES))
 

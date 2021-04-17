@@ -11,6 +11,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+#define IS_GUEST(session) !strcmp(session.account_ptr->username, "ANONYMOUS")
+
 typedef struct account {
     char *username;
     char *password;
