@@ -10,8 +10,14 @@
 
 int dchannel_destroy(data_channel_t *dchannel)
 {
-    if (socket_close(&dchannel->sock))
-        return EXIT_FAILURE;
+    if (dchannel->sock.fd != -1) {
+        if (socket_close(&dchannel->sock))
+            return EXIT_FAILURE;
+    }
+    if (dchannel->mode == PASSIVE) {
+        if (socket_close(&dchannel->passive_server))
+            return EXIT_FAILURE;
+    }
     free(dchannel);
     return EXIT_SUCCESS;
 }
