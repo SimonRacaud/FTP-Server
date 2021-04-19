@@ -40,5 +40,6 @@ cmd_t *cmd_create(const char *command)
     } else {
         parse_command(command, space_idx, cmd);
     }
+    str_to_upper(cmd->label);
     return cmd;
 }

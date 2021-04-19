@@ -9,13 +9,6 @@
 #include "socket.h"
 #include <ctype.h>
 
-static void str_to_upper(char *str)
-{
-    for (size_t i = 0; str[i] != '\0'; i++) {
-        str[i] = toupper(str[i]);
-    }
-}
-
 cmd_t *get_request(connection_t *client, bool *is_error)
 {
     char *command = socket_receive(&client->sock);
@@ -25,7 +18,6 @@ cmd_t *get_request(connection_t *client, bool *is_error)
         *is_error = true;
         return NULL;
     }
-    str_to_upper(command);
     if (command[0] == '\0') {
         *is_error = false;
         free(command);

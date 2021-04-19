@@ -6,6 +6,7 @@
 */
 
 #include "server.h"
+#include "utility.h"
 
 extern const command_t COMMANDS[];
 
@@ -20,6 +21,8 @@ static int call_command(
         return EXIT_SUCCESS;
     }
     if (COMMANDS[idx].func) {
+        if (COMMANDS[idx].case_insensitive == true && request->argv)
+            str_to_upper(request->argv);
         return COMMANDS[idx].func(app, client, request);
     }
     fprintf(
