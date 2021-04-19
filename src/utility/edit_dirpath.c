@@ -25,7 +25,7 @@ static char *edit_dirpath_absolute(const char *home, const char *new)
 static char *edit_dirpath_relative(
     const char *home, const char *prev, const char *new)
 {
-    size_t len = (strlen(prev) + strlen(new) + 1);
+    size_t len = (strlen(prev) + strlen(new) + 2);
     char *buffer = malloc(sizeof(char) * len);
     char *result = malloc(sizeof(char) * len);
 
