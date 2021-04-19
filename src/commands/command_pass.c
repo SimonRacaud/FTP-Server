@@ -7,6 +7,7 @@
 
 #include "app.h"
 #include "server.h"
+#include "utility.h"
 
 static account_t *find_account(
     account_t **list, const char *username, const char *password)
@@ -30,6 +31,10 @@ static int proceed_request(connection_t *client)
         if (send_response(&client->sock, C230, "Login successful."))
             return EXIT_FAILURE;
         client->session.is_logged = true;
+        free(client->workdir);
+        client->workdir = strdup(client->session.account_ptr->home_path);
+        if (!client->workdir)
+            return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;
 }
