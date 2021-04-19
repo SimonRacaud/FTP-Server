@@ -6,6 +6,7 @@
 */
 
 #include "app.h"
+#include <dirent.h>
 
 static const char *HELP_TOKEN[] = {"-h", "--help", NULL};
 
@@ -32,6 +33,8 @@ static bool is_number(const char *str)
 
 int arg_parser(int argc, char **argv, args_t *dest)
 {
+    DIR *home;
+
     if (show_help(argc, argv)) {
         exit(usage(EXIT_SUCCESS, argv[0]));
     }
@@ -40,5 +43,9 @@ int arg_parser(int argc, char **argv, args_t *dest)
     }
     dest->port = (uint) strtoul(argv[1], NULL, 10);
     dest->home_path = argv[2];
+    home = opendir(dest->home_path);
+    if (home == NULL)
+        return EXIT_FAILURE;
+    closedir(home);
     return EXIT_SUCCESS;
 }
