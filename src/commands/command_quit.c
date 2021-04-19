@@ -11,8 +11,10 @@
 int command_quit(
     app_t *app, connection_t *client, __attribute__((unused)) cmd_t *request)
 {
-    app->loop = false;
     if (send_response(&client->sock, C221, "Goodbye."))
         return EXIT_FAILURE;
+    if (connection_list_remove(&app->server, client) == EXIT_FAILURE) {
+        return EXIT_FAILURE;
+    }
     return EXIT_SUCCESS;
 }

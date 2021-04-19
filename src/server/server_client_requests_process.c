@@ -16,6 +16,9 @@ int server_client_requests_process(app_t *app, server_t *server)
                 == EXIT_FAILURE) {
             return EXIT_FAILURE;
         }
+        if (server->clients && server->clients[i] == NULL) {
+            break;
+        }
     }
     return EXIT_SUCCESS;
 }
