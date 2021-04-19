@@ -17,7 +17,8 @@ connection_t *connection_create(int server_fd)
     if (socket_server_connect(&conn->sock, server_fd))
         return NULL;
     conn->session.account_ptr = NULL;
-    conn->session.is_fully_logged = false;
+    conn->session.is_logged = false;
+    conn->session.username = NULL;
     conn->channel_list = NULL;
     conn->workdir = strdup("");
     if (!conn->workdir)
