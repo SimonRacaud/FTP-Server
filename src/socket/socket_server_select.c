@@ -7,13 +7,6 @@
 
 #include "socket.h"
 
-static void debug(void)
-{
-#ifdef DEBUG
-    fprintf(stderr, "Server ready.");
-#endif
-}
-
 static void init_fds(fd_set *fds, connection_t **clients, socket_t *server)
 {
     FD_ZERO(fds);
