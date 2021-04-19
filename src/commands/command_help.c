@@ -10,10 +10,12 @@
 
 extern const command_t COMMANDS[];
 
-const char *HELP_INIT = "214-The following commands are recognized.\n";
+const char *HELP_INIT_ALL = "214-The following commands are recognized.\n";
+const char *HELP_INIT_ARG = "214-Command description.\n";
 
-static void show_commands(socket_t *sock)
+static void show_available_commands(socket_t *sock)
 {
+    send_raw_message(sock, HELP_INIT_ALL);
     for (size_t i = 0; COMMANDS[i].label != NULL; i++) {
         send_raw_message(sock, " ");
         if (i && i % 14 == 0) {
@@ -27,12 +29,31 @@ static void show_commands(socket_t *sock)
     send_raw_message(sock, "\n");
 }
 
+static bool show_specific_command(socket_t *sock, const char *cmd_name)
+{
+    send_raw_message(sock, HELP_INIT_ARG);
+    for (size_t i = 0; COMMANDS[i].label != NULL; i++) {
+        if (strcmp(cmd_name, COMMANDS[i].label) == 0) {
+            send_raw_message(sock, COMMANDS[i].label);
+            send_raw_message(sock, " ");
+            send_raw_message(sock, COMMANDS[i].description);
+            send_raw_message(sock, "\n");
+            return true;
+        }
+    }
+    send_response(sock, C500, "Unknown command.");
+    return false;
+}
+
 int command_help(__attribute__((unused)) app_t *app, connection_t *client,
     __attribute__((unused)) cmd_t *request)
 {
-    if (send_raw_message(&client->sock, HELP_INIT))
-        return EXIT_FAILURE;
-    show_commands(&client->sock);
+    if (request->argv == NULL) {
+        show_available_commands(&client->sock);
+    } else {
+        if (!show_specific_command(&client->sock, request->argv))
+            return EXIT_SUCCESS;
+    }
     if (send_response(&client->sock, C214, "Help OK."))
         return EXIT_FAILURE;
     return EXIT_SUCCESS;

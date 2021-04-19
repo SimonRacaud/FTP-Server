@@ -11,90 +11,105 @@ const command_t COMMANDS[] = {
     {
         .label = "USER",
         .func = &command_user,
+        .description = "<description>",
         .need_auth = false,
         .case_insensitive = true
     },
     {
         .label = "PASS",
         .func = &command_pass,
+        .description = "<description>",
         .need_auth = false,
         .case_insensitive = true
     },
     {
         .label = "QUIT",
         .func = &command_quit,
+        .description = "<description>",
         .need_auth = false,
         .case_insensitive = false
     },
     {
         .label = "CWD",
         .func = &command_cwd,
+        .description = "<description>",
         .need_auth = true,
         .case_insensitive = false
     },
     {
         .label = "CDUP",
         .func = &command_cdup,
+        .description = "<description>",
         .need_auth = true,
         .case_insensitive = false
     },
     {
         .label = "PWD",
         .func = &command_pwd,
+        .description = "<description>",
         .need_auth = true,
         .case_insensitive = false
     },
     {
         .label = "DELE",
         .func = NULL,
+        .description = "<description>",
         .need_auth = true,
         .case_insensitive = false
     },
     {
         .label = "HELP",
         .func = &command_help,
+        .description = "<description>",
         .need_auth = true,
         .case_insensitive = true
     },
     {
         .label = "NOOP",
         .func = &command_noop,
+        .description = "<description>",
         .need_auth = true,
         .case_insensitive = false
     },
     {
         .label = "PASV",
         .func = NULL,
+        .description = "<description>",
         .need_auth = true,
         .case_insensitive = false
     },
     {
         .label = "PORT",
         .func = NULL,
+        .description = "<description>",
         .need_auth = true,
         .case_insensitive = false
     },
     {
         .label = "RETR",
         .func = NULL,
+        .description = "<description>",
         .need_auth = true,
         .case_insensitive = false
     },
     {
         .label = "STOR",
         .func = NULL,
+        .description = "<description>",
         .need_auth = true,
         .case_insensitive = false
     },
     {
         .label = "LIST",
         .func = NULL,
+        .description = "<description>",
         .need_auth = true,
         .case_insensitive = false
     },
     {
         .label = NULL,
         .func = NULL,
+        .description = NULL,
         .need_auth = false,
         .case_insensitive = false
     }

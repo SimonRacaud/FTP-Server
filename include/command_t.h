@@ -28,6 +28,7 @@ typedef int (* cmd_func)(app_t *, connection_t *, cmd_t *);
 typedef struct command {
     char *label;
     cmd_func func;
+    char *description;
     bool need_auth;
     bool case_insensitive;
 } command_t;
