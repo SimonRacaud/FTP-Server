@@ -16,6 +16,11 @@ static const account_t ACCOUNT[] = {
         .home_path = NULL
     },
     {
+        .username = "X",
+        .password = "",
+        .home_path = NULL
+    },
+    {
         .username = NULL,
         .password = NULL,
         .home_path = NULL
