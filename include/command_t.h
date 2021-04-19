@@ -29,6 +29,7 @@ typedef struct command {
     char *label;
     cmd_func func;
     bool need_auth;
+    bool case_insensitive;
 } command_t;
 
 #endif // COMMAND_T_H

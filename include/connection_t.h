@@ -12,6 +12,9 @@
 #include "session_t.h"
 #include "data_channel_t.h"
 
+#define CLIENT_HOME(client) (client->session.account_ptr) ? \
+                                client->session.account_ptr->home_path : NULL
+
 typedef struct connection {
     socket_t sock;
     session_t session;
