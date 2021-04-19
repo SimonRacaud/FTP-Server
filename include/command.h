@@ -23,7 +23,7 @@ int command_cdup(app_t *app, connection_t *client, cmd_t *request);
 int command_cwd(app_t *app, connection_t *client, cmd_t *request);
 int command_pwd(app_t *app, connection_t *client, cmd_t *request);
 
-//int command_dele(app_t *app, connection_t *client, cmd_t *request);
+int command_dele(app_t *app, connection_t *client, cmd_t *request);
 
 //int command_pasv(app_t *app, connection_t *client, cmd_t *request);
 //int command_port(app_t *app, connection_t *client, cmd_t *request);

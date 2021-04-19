@@ -56,6 +56,7 @@ SRC_FILES	=	main.c					\
 				commands/command_cdup.c						\
 				commands/command_cwd.c						\
 				commands/command_pwd.c						\
+				commands/command_dele.c						\
 
 SRC	=	$(addprefix $(DSRC), $(SRC_FILES))
 

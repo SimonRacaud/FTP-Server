@@ -52,7 +52,7 @@ const command_t COMMANDS[] = {
     },
     {
         .label = "DELE",
-        .func = NULL,
+        .func = &command_dele,
         .description = "<description>",
         .need_auth = true,
         .case_insensitive = false
