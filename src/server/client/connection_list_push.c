@@ -7,19 +7,32 @@
 
 #include "server.h"
 
-int connection_list_push(connection_t *node, connection_t ***clients_ptr)
+static connection_t **app_new_client(connection_t **clients, connection_t *node)
 {
     size_t size = 0;
+    connection_t **new_clients;
+
+    while (clients[size] != NULL)
+        size++;
+    new_clients = malloc(sizeof(connection_t *) * (size + 2));
+    if (!new_clients)
+        return NULL;
+    for (size_t i = 0; i < size; i++)
+        new_clients[i] = clients[i];
+    new_clients[size] = node;
+    new_clients[size + 1] = NULL;
+    free(clients);
+    return new_clients;
+}
+
+int connection_list_push(connection_t *node, connection_t ***clients_ptr)
+{
     connection_t **clients = *clients_ptr;
 
     if (clients != NULL) {
-        for (; clients[size] != NULL; size++);
-        clients =
-            realloc(clients, sizeof(connection_t *) * (size + 2));
-        if (!clients)
+        *clients_ptr = app_new_client(clients, node);
+        if (*clients_ptr == NULL)
             return EXIT_FAILURE;
-        clients[size] = node;
-        clients[size + 1] = NULL;
     } else {
         *clients_ptr = calloc(1, sizeof(connection_t *) * 2);
         (*clients_ptr)[1] = NULL;

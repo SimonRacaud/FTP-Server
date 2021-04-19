@@ -15,7 +15,7 @@ static connection_t **realloc_list(
 
     if (!res)
         return NULL;
-    res[size] = NULL;
+    res[size - 1] = NULL;
     for (size_t i = 0; i < size; i++) {
         if (list[i] != to_remove) {
             res[idx++] = list[i];
