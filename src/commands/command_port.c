@@ -37,16 +37,22 @@ static int parse_args(active_args_t *dest, char *input)
     int ip[IP_SIZE];
     int port[2];
     int status;
+    char *parsed_ip;
 
     status = sscanf(input, "(%d,%d,%d,%d,%d,%d)", &ip[0], &ip[1], &ip[2],
         &ip[3], &port[0], &port[1]);
     if (status != NB_PARSED_NUMBERS)
         return EXIT_FAILURE;
     dest->port = port[0] * 256 + port[1];
-    dest->ip = parse_ip(ip);
+    parsed_ip = parse_ip(ip);
     if (dest->ip == NULL) {
         return EXIT_FAILURE;
     }
+    if (strlen(parsed_ip) <= INET_ADDRSTRLEN)
+        strcpy(dest->ip, parsed_ip);
+    else
+        return EXIT_FAILURE;
+    free(parsed_ip);
     return EXIT_SUCCESS;
 }
 
@@ -68,7 +74,6 @@ int command_port(
     if (dchannel_list_add(node, &client->channel_list) == EXIT_FAILURE) {
         return send_response(&client->sock, C500, "An error occurred.");
     }
-    free(args.ip);
     if (send_response(&client->sock, C200, "Passive channel ready."))
         return EXIT_FAILURE;
     return EXIT_SUCCESS;
