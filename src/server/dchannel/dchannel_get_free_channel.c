@@ -9,7 +9,7 @@
 
 data_channel_t *dchannel_get_free_channel(data_channel_t **list)
 {
-    for (size_t i = 0; list[i] != NULL; i++) {
+    for (size_t i = 0; list && list[i] != NULL; i++) {
         if (list[i]->used == false) {
             return list[i];
         }
