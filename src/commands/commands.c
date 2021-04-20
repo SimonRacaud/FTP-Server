@@ -101,7 +101,7 @@ const command_t COMMANDS[] = {
     },
     {
         .label = "LIST",
-        .func = NULL,
+        .func = &command_list,
         .description = "<description>",
         .need_auth = true,
         .case_insensitive = false

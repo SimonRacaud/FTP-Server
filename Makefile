@@ -37,6 +37,7 @@ SRC_FILES	=	main.c					\
 				server/dchannel/dchannel_get_free_channel.c	\
 				server/dchannel/dchannel_prepare.c			\
 				server/dchannel/server_dchannel_requests_process.c	\
+				server/dchannel/load_active_dchannel_args.c	\
                	server/server_create.c						\
                	server/server_destroy.c						\
                	server/server_client_manager.c				\
@@ -65,6 +66,7 @@ SRC_FILES	=	main.c					\
 				commands/command_dele.c						\
 				commands/command_port.c						\
 				commands/command_pasv.c						\
+				commands/command_list.c						\
 
 SRC	=	$(addprefix $(DSRC), $(SRC_FILES))
 
