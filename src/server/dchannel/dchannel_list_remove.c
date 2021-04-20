@@ -15,7 +15,7 @@ static data_channel_t **realloc_list(
 
     if (!res)
         return NULL;
-    res[size] = NULL;
+    res[size - 1] = NULL;
     for (size_t i = 0; i < size; i++) {
         if (list[i] != to_remove) {
             res[idx++] = list[i];
@@ -27,16 +27,16 @@ static data_channel_t **realloc_list(
     return res;
 }
 
-int dchannel_list_remove(connection_t *client, data_channel_t *to_remove)
+int dchannel_list_remove(data_channel_t ***list_ptr, data_channel_t *to_remove)
 {
     size_t size = 0;
 
-    if (client->channel_list == NULL) {
+    if (*list_ptr == NULL) {
         return EXIT_SUCCESS;
     }
-    for (; client->channel_list[size] != NULL; size++);
-    client->channel_list = realloc_list(size, client->channel_list, to_remove);
-    if (client->channel_list == NULL)
+    for (; (*list_ptr)[size] != NULL; size++);
+    *list_ptr = realloc_list(size, *list_ptr, to_remove);
+    if (*list_ptr == NULL)
         return EXIT_FAILURE;
     return EXIT_SUCCESS;
 }

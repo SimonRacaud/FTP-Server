@@ -7,23 +7,39 @@
 
 #include "server.h"
 
-int dchannel_list_add(data_channel_t *node, connection_t *client)
+static data_channel_t **add_new_node(
+    data_channel_t **list, data_channel_t *node)
 {
     size_t size = 0;
+    data_channel_t **new_list;
 
-    if (client->channel_list != NULL) {
-        for (; client->channel_list[size] != NULL; size++);
-        client->channel_list = realloc(
-            client->channel_list, sizeof(data_channel_t *) * (size + 2));
-        if (!client->channel_list)
+    while (list[size] != NULL)
+        size++;
+    new_list = malloc(sizeof(data_channel_t *) * (size + 2));
+    if (!new_list)
+        return NULL;
+    for (size_t i = 0; i < size; i++)
+        new_list[i] = list[i];
+    new_list[size] = node;
+    new_list[size + 1] = NULL;
+    free(list);
+    return new_list;
+}
+
+int dchannel_list_add(data_channel_t *node, data_channel_t ***list_ptr)
+{
+    data_channel_t **list = *list_ptr;
+
+    if (list != NULL) {
+        *list_ptr = add_new_node(list, node);
+        if (*list_ptr == NULL)
             return EXIT_FAILURE;
-        client->channel_list[size] = node;
-        client->channel_list[size + 1] = NULL;
     } else {
-        client->channel_list = calloc(1, sizeof(data_channel_t *) * 2);
-        if (!client->channel_list)
+        *list_ptr = calloc(1, sizeof(data_channel_t *) * 2);
+        (*list_ptr)[1] = NULL;
+        if (!(*list_ptr))
             return EXIT_FAILURE;
-        client->channel_list[0] = node;
+        (*list_ptr)[0] = node;
     }
     return EXIT_SUCCESS;
 }
