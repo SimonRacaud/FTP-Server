@@ -32,7 +32,7 @@ static int call_command(
 
 int server_execute_cmd(app_t *app, connection_t *client, cmd_t *request)
 {
-    int exit_status = EXIT_FAILURE;
+    int exit_status = EXIT_SUCCESS;
 
     for (size_t i = 0; COMMANDS[i].label != NULL; i++) {
         if (strcmp(COMMANDS[i].label, request->label) == 0) {

@@ -20,6 +20,7 @@ connection_t *connection_create(int server_fd)
     conn->session.is_logged = false;
     conn->session.username = NULL;
     conn->channel_list = NULL;
+    conn->read_buffer = NULL;
     conn->workdir = strdup("");
     if (!conn->workdir)
         return NULL;

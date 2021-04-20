@@ -21,6 +21,8 @@
 #include "data_channel_t.h"
 #include "command_t.h"
 
+#define IS_LOGOUT(cmd) !strcmp(cmd->label, "QUIT")
+
 int server_create(server_t *server, uint port, uint max_client);
 int server_destroy(server_t *server);
 
@@ -37,6 +39,7 @@ int send_raw_message(socket_t *sock, const char *message);
 cmd_t *cmd_create(const char *command);
 void cmd_destroy(cmd_t *cmd);
 cmd_t *get_request(connection_t *client, bool *is_error);
+bool have_available_command_in_buffer(connection_t *client);
 int server_execute_cmd(app_t *app, connection_t *client, cmd_t *request);
 
 //  CONNECTION

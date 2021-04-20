@@ -20,22 +20,19 @@ static ssize_t get_space_idx(const char *command)
 
 static void parse_command(const char *command, ssize_t space_idx, cmd_t *cmd)
 {
-    size_t len = strlen(&command[space_idx + 1]);
-
     cmd->label = strndup(command, space_idx);
-    cmd->argv = strndup(&command[space_idx + 1], len - 1);
+    cmd->argv = strdup(&command[space_idx + 1]);
 }
 
 cmd_t *cmd_create(const char *command)
 {
     ssize_t space_idx = get_space_idx(command);
     cmd_t *cmd = malloc(sizeof(cmd_t));
-    size_t len = strlen(command);
 
     if (cmd == NULL) {
         return NULL;
     } else if (space_idx == -1) {
-        cmd->label = strndup(command, len - 1);
+        cmd->label = strdup(command);
         cmd->argv = NULL;
     } else {
         parse_command(command, space_idx, cmd);

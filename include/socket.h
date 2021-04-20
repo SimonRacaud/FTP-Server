@@ -37,7 +37,7 @@ int socket_server_select(
 
 int socket_server_connect(socket_t *client, int server_fd);
 
-char *socket_receive(socket_t *sock);
+char *socket_receive(socket_t *sock, char **buffer_ptr);
 int socket_send(socket_t *sock, const char *msg);
 
 int socket_client_connect(socket_t *sock, uint port, const char *ip);

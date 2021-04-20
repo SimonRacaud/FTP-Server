@@ -17,6 +17,10 @@ int connection_destroy(connection_t *conn)
         if (dchannel_list_destroy(conn->channel_list) == EXIT_FAILURE)
             return EXIT_FAILURE;
     }
+    if (conn->session.username)
+        free(conn->session.username);
+    if (conn->read_buffer)
+        free(conn->read_buffer);
     free(conn);
     return EXIT_SUCCESS;
 }

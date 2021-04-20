@@ -20,6 +20,7 @@ typedef struct connection {
     session_t session;
     data_channel_t **channel_list;
     char *workdir;
+    char *read_buffer;
 } connection_t;
 
 #endif // CONNECTION_T_H

@@ -48,6 +48,9 @@ SRC_FILES	=	main.c					\
 				server/response/response.c					\
 				utility/edit_dirpath.c						\
 				utility/str_to_upper.c						\
+				utility/is_empty.c							\
+				utility/find_newline.c						\
+				utility/strconcat.c						\
 				commands/command_help.c						\
 				commands/command_noop.c						\
 				commands/command_pass.c						\
