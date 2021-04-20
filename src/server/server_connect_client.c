@@ -16,5 +16,5 @@ int server_connect_client(server_t *server)
     if (connection_list_push(client, &server->clients) == EXIT_FAILURE)
         return EXIT_FAILURE;
     server->select.status--;
-    return EXIT_SUCCESS;
+    return send_response(&client->sock, C220, "Service ready for new user.");
 }
