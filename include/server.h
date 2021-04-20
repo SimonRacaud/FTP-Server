@@ -20,6 +20,8 @@
 #include "connection_t.h"
 #include "data_channel_t.h"
 #include "server_t.h"
+#define READ_SIZE 42
+
 
 #define IS_LOGOUT(cmd) !strcmp(cmd->label, "QUIT")
 
@@ -57,9 +59,10 @@ int dchannel_list_add(data_channel_t *node, data_channel_t ***list_ptr);
 int dchannel_list_destroy(data_channel_t **list);
 int dchannel_list_remove(
     data_channel_t ***list_ptr, data_channel_t *to_remove);
-pid_t dchannel_prepare(
-    connection_t *client, data_channel_t *channel, active_args_t *args);
+pid_t dchannel_prepare(connection_t *client, data_channel_t *channel);
+active_args_t get_active_channel_args(socket_t *client);
 int dchannel_list_clean(data_channel_t ***list_ptr);
 data_channel_t *dchannel_get_free_channel(data_channel_t **list);
+int load_active_dchannel_args(active_args_t *dest, socket_t *client);
 
 #endif // SERVER_H
