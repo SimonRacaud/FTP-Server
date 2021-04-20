@@ -25,8 +25,8 @@ int command_pwd(app_t *app, connection_t *client, cmd_t *request);
 
 int command_dele(app_t *app, connection_t *client, cmd_t *request);
 
-//int command_pasv(app_t *app, connection_t *client, cmd_t *request);
-//int command_port(app_t *app, connection_t *client, cmd_t *request);
+int command_pasv(app_t *app, connection_t *client, cmd_t *request);
+int command_port(app_t *app, connection_t *client, cmd_t *request);
 //int command_retr(app_t *app, connection_t *client, cmd_t *request);
 //int command_stor(app_t *app, connection_t *client, cmd_t *request);
 //int command_list(app_t *app, connection_t *client, cmd_t *request);

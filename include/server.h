@@ -9,17 +9,17 @@
 #define SERVER_H
 
 #ifdef EXIT_FAILURE
-#undef EXIT_FAILURE
+    #undef EXIT_FAILURE
 #endif
 #define EXIT_FAILURE 84
 
 #include <stdio.h>
 #include <string.h>
 
-#include "server_t.h"
+#include "command_t.h"
 #include "connection_t.h"
 #include "data_channel_t.h"
-#include "command_t.h"
+#include "server_t.h"
 
 #define IS_LOGOUT(cmd) !strcmp(cmd->label, "QUIT")
 
@@ -50,10 +50,16 @@ int connection_list_remove(server_t *server, connection_t *to_remove);
 int connection_list_destroy(connection_t **list);
 
 //  DATA CHANNEL
-data_channel_t *dchannel_create(channel_mode_e mode);
+data_channel_t *dchannel_create(
+    channel_mode_e mode, uint port, const char *ip);
 int dchannel_destroy(data_channel_t *dchannel);
-int dchannel_list_add(data_channel_t *node, connection_t *client);
+int dchannel_list_add(data_channel_t *node, data_channel_t ***list_ptr);
 int dchannel_list_destroy(data_channel_t **list);
-int dchannel_list_remove(connection_t *client, data_channel_t *to_remove);
+int dchannel_list_remove(
+    data_channel_t ***list_ptr, data_channel_t *to_remove);
+pid_t dchannel_prepare(
+    connection_t *client, data_channel_t *channel, active_args_t *args);
+int dchannel_list_clean(data_channel_t ***list_ptr);
+data_channel_t *dchannel_get_free_channel(data_channel_t **list);
 
 #endif // SERVER_H

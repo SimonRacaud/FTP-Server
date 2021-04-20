@@ -15,10 +15,16 @@ typedef enum data_channel_mode {
     PASSIVE
 } channel_mode_e;
 
+typedef struct active_mode_parameters {
+    char *ip;
+    uint port;
+} active_args_t;
+
 typedef struct data_channel {
     socket_t sock;
     socket_t passive_server;
     channel_mode_e mode;
+    bool used;
 } data_channel_t;
 
 #endif // DATA_CHANNEL_T_H

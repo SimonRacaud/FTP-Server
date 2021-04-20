@@ -73,14 +73,14 @@ const command_t COMMANDS[] = {
     },
     {
         .label = "PASV",
-        .func = NULL,
+        .func = &command_pasv,
         .description = "<description>",
         .need_auth = true,
         .case_insensitive = false
     },
     {
         .label = "PORT",
-        .func = NULL,
+        .func = &command_port,
         .description = "<description>",
         .need_auth = true,
         .case_insensitive = false
