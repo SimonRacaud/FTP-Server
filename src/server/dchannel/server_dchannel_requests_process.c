@@ -15,7 +15,7 @@ static int sub_routine(select_t *select, connection_t *client)
     for (size_t i = 0; client->channel_list && client->channel_list[i]; i++) {
         dchan = client->channel_list[i];
         if (dchan->mode == PASSIVE
-            && FD_ISSET(dchan->sock.fd, &select->read_fds)
+            && FD_ISSET(dchan->passive_server.fd, &select->read_fds)
             && socket_server_connect(&dchan->sock, dchan->passive_server.fd)) {
             return EXIT_FAILURE;
         }
