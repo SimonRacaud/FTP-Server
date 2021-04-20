@@ -67,6 +67,8 @@ SRC_FILES	=	main.c					\
 				commands/command_port.c						\
 				commands/command_pasv.c						\
 				commands/command_list.c						\
+				commands/command_retr.c						\
+				commands/command_stor.c						\
 
 SRC	=	$(addprefix $(DSRC), $(SRC_FILES))
 

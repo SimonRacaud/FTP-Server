@@ -87,14 +87,14 @@ const command_t COMMANDS[] = {
     },
     {
         .label = "RETR",
-        .func = NULL,
+        .func = &command_retr,
         .description = "<description>",
         .need_auth = true,
         .case_insensitive = false
     },
     {
         .label = "STOR",
-        .func = NULL,
+        .func = &command_stor,
         .description = "<description>",
         .need_auth = true,
         .case_insensitive = false
