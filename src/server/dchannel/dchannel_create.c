@@ -14,10 +14,11 @@ static int dchannel_init_active(
     data_channel_t *dchannel, uint port, const char *ip)
 {
     dchannel->mode = ACTIVE;
-    if (socket_client_connect(&dchannel->sock, port, ip)) {
-        fprintf(stderr, "Data channel client connection failed\n");
+    dchannel->args_active.port = port;
+    if (strlen(ip) <= INET_ADDRSTRLEN)
+        strcpy(dchannel->args_active.ip, ip);
+    else
         return EXIT_FAILURE;
-    }
     return EXIT_SUCCESS;
 }
 
@@ -28,6 +29,7 @@ int dchannel_init_passive(data_channel_t *dchannel)
         return EXIT_FAILURE;
     }
     dchannel->mode = PASSIVE;
+    dchannel->sock.fd = -1;
     return EXIT_SUCCESS;
 }
 
@@ -39,11 +41,15 @@ data_channel_t *dchannel_create(channel_mode_e mode, uint port, const char *ip)
         return NULL;
     node->sock.fd = -1;
     if (mode == ACTIVE) {
-        if (dchannel_init_active(node, port, ip))
+        if (dchannel_init_active(node, port, ip)) {
+            free(node);
             return NULL;
+        }
     } else {
-        if (dchannel_init_passive(node))
+        if (dchannel_init_passive(node)) {
+            free(node);
             return NULL;
+        }
     }
     node->used = false;
     return node;
