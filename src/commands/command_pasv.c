@@ -9,7 +9,7 @@
 #include "app.h"
 #include "server.h"
 
-static const size_t RESPONSE_MAX_LEN = 50;
+static const size_t RESPONSE_MAX_LEN = 49;
 
 static int send_answer(socket_t *chan_sock, connection_t *client)
 {
@@ -27,7 +27,7 @@ static int send_answer(socket_t *chan_sock, connection_t *client)
     dport[1] = port % 256;
     if (sscanf(ip, "%d.%d.%d.%d", &d_ip[0], &d_ip[1], &d_ip[2], &d_ip[3]) != 4)
         return EXIT_FAILURE;
-    sprintf(buffer, "Entering Passive Mode (%d,%d,%d,%d,%d,%d).\n", d_ip[0],
+    sprintf(buffer, "Entering Passive Mode (%d,%d,%d,%d,%d,%d).", d_ip[0],
         d_ip[1], d_ip[2], d_ip[3], dport[0], dport[1]);
     return send_response(&client->sock, C227, buffer);
 }
