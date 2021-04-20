@@ -30,6 +30,7 @@ typedef enum response_code {
     C425 = 15,
     C331 = 16,
     C503 = 17,
+    C426 = 18,
     CNO
 } code_e;
 
