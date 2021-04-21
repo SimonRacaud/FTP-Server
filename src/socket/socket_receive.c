@@ -66,10 +66,6 @@ static char *format_and_check_line(char *line, ssize_t new_line_idx)
             line[new_line_idx - 1] = '\0';
         else
             line[new_line_idx] = '\0';
-        if (is_empty(line)) {
-            free(line);
-            return NULL;
-        }
     } else {
         free(line);
         return NULL;
