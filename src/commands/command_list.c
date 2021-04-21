@@ -51,12 +51,13 @@ static char *get_absolute_filepath(connection_t *client, const char *pathname)
         path = edit_dirpath(CLIENT_HOME(client), client->workdir, pathname);
         if (!path)
             return NULL;
+        if (access(path, R_OK) == -1) {
+            free(path);
+            return NULL;
+        }
         return path;
     }
-    if (access(pathname, R_OK) == -1) {
-        free(path);
-        return NULL;
-    }
+
     return strdup(client->workdir);
 }
 
