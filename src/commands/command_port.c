@@ -39,7 +39,7 @@ static int parse_args(active_args_t *dest, char *input)
     int status;
     char *parsed_ip;
 
-    status = sscanf(input, "(%d,%d,%d,%d,%d,%d)", &ip[0], &ip[1], &ip[2],
+    status = sscanf(input, "%d,%d,%d,%d,%d,%d", &ip[0], &ip[1], &ip[2],
         &ip[3], &port[0], &port[1]);
     if (status != NB_PARSED_NUMBERS)
         return EXIT_FAILURE;
