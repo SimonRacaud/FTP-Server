@@ -11,15 +11,18 @@
 
 cmd_t *get_request(connection_t *client, bool *is_error)
 {
-    char *command = socket_receive(&client->sock, &client->read_buffer);
+    bool empty = false;
+    char *command =
+        socket_receive(&client->sock, &client->read_buffer, &empty);
     cmd_t *cmd;
 
-    if (!command) {
-        *is_error = false;
+    *is_error = false;
+    if (!command && empty) {
+        command = strdup(LOGOUT_CMD);
+    } else if (!command) {
         return NULL;
     }
     if (command[0] == '\0') {
-        *is_error = false;
         free(command);
         return NULL;
     }

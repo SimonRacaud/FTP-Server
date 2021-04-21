@@ -77,7 +77,7 @@ static char *format_and_check_line(char *line, ssize_t new_line_idx)
     return line;
 }
 
-char *socket_receive(socket_t *sock, char **buffer_ptr)
+char *socket_receive(socket_t *sock, char **buffer_ptr, bool *empty)
 {
     size_t line_len = (!(*buffer_ptr)) ? 0 : strlen(*buffer_ptr);
     size_t buffer_len = 0;
@@ -92,9 +92,10 @@ char *socket_receive(socket_t *sock, char **buffer_ptr)
     new_line_idx = find_newline(line);
     update_buffer(buffer_ptr, line, new_line_idx);
     line = format_and_check_line(line, new_line_idx);
+    if (line_len == 0)
+        *empty = true;
     #ifdef DEBUG
     fprintf(stderr, "line: (%s)\n", line ? line : "null");
-    //fprintf(stderr, "buffer: (%s)\n", (*buffer_ptr) ? *buffer_ptr : "no");
     fprintf(stderr, "received: %lu bytes\n", line_len);
     #endif
     return line;

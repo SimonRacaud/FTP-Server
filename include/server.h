@@ -21,7 +21,7 @@
 #include "data_channel_t.h"
 #include "server_t.h"
 #define READ_SIZE 42
-
+#define LOGOUT_CMD "QUIT"
 
 #define IS_LOGOUT(cmd) !strcmp(cmd->label, "QUIT")
 
