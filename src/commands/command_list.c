@@ -57,7 +57,6 @@ static char *get_absolute_filepath(connection_t *client, const char *pathname)
         }
         return path;
     }
-
     return strdup(client->workdir);
 }
 
