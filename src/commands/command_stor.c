@@ -38,13 +38,15 @@ static void actions_in_child_process(
 
 static char *get_absolute_filepath(connection_t *client, const char *pathname)
 {
-    char *path = NULL;
+    char *filepath = NULL;
 
     if (pathname) {
-        path = edit_dirpath(CLIENT_HOME(client), client->workdir, pathname);
-        if (!path)
+        filepath = strdup(client->workdir);
+        filepath = strconcat(filepath, "/");
+        filepath = strconcat(filepath, pathname);
+        if (!filepath)
             return NULL;
-        return path;
+        return filepath;
     }
     return NULL;
 }
