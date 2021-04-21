@@ -53,6 +53,10 @@ static char *get_absolute_filepath(connection_t *client, const char *pathname)
             return NULL;
         return path;
     }
+    if (access(pathname, R_OK) == -1) {
+        free(path);
+        return NULL;
+    }
     return strdup(client->workdir);
 }
 
