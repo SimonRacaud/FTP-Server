@@ -19,6 +19,7 @@ int main(int argc, char **argv)
     }
     if (app_init(&app, &parsed_args, max_client) == EXIT_FAILURE)
         return EXIT_FAILURE;
+    free(parsed_args.home_path);
     if (signal_init(&app) == EXIT_FAILURE)
         return EXIT_FAILURE;
     if (app_loop(&app) == EXIT_FAILURE)

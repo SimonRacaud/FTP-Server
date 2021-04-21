@@ -42,7 +42,9 @@ int arg_parser(int argc, char **argv, args_t *dest)
         return EXIT_FAILURE;
     }
     dest->port = (uint) strtoul(argv[1], NULL, 10);
-    dest->home_path = argv[2];
+    dest->home_path = realpath(argv[2], NULL);
+    if (!dest->home_path)
+        return EXIT_FAILURE;
     home = opendir(dest->home_path);
     if (home == NULL)
         return EXIT_FAILURE;
