@@ -7,6 +7,16 @@
 
 #include "app.h"
 #include "server.h"
+#include "socket.h"
+
+static void debug(__attribute__((unused)) const char *filename,
+    __attribute__((unused)) const char *workdir)
+{
+    #ifdef DEBUG
+    perror("remove");
+    fprintf(stderr, "filename = %s, workdir = %s\n", filename, workdir);
+    #endif
+}
 
 int command_dele(
     __attribute__((unused)) app_t *app, connection_t *client, cmd_t *request)
@@ -21,8 +31,9 @@ int command_dele(
     if (chdir(client->workdir) == -1) {
         if (send_response(&client->sock, C500, "An error occured, chdir."))
             return EXIT_FAILURE;
-    } else if (remove(filename) == -1) {
-        if (send_response(&client->sock, C500, "An error occured."))
+    } else if (access(filename, W_OK) == -1 || remove(filename) == -1) {
+        debug(filename, client->workdir);
+        if (send_response(&client->sock, C550, "An error occured."))
             return EXIT_FAILURE;
     } else {
         if (send_response(&client->sock, C250, "File deleted."))
