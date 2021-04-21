@@ -58,7 +58,7 @@ const response_t RESPONSES[] = {
     {
         .code = C226,
         .message = "Closing data client. "
-                   "Requested file action successful.",
+        "Requested file action successful.",
     },
     {
         .code = C230,

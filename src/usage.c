@@ -12,6 +12,6 @@ int usage(int status, const char *bin)
     printf("USAGE: %s port path\n", bin);
     printf("\tport\tis the port number on which the server socket listens\n");
     printf("\tpath\tis the path to the home directory for the Anonymous "
-           "user\n");
+    "user\n");
     return status;
 }

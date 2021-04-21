@@ -18,8 +18,9 @@ static int child_job(data_channel_t *chan)
         if (socket_client_connect(&chan->sock, args->port, args->ip))
             return EXIT_FAILURE;
     } else if (chan->mode == PASSIVE && chan->sock.fd == -1) {
-        if (socket_server_connect(&chan->sock, chan->passive_server.fd))
+        if (socket_server_connect(&chan->sock, chan->passive_server.fd)) {
             return EXIT_FAILURE;
+        }
     }
     return EXIT_SUCCESS;
 }
