@@ -41,7 +41,7 @@ static int proceed_request(connection_t *client)
 
 static int pre_process(connection_t *client)
 {
-    if (client->session.is_logged && IS_GUEST(client->session)) {
+    if (client->session.is_logged) {
         if (send_response(&client->sock, C230, "Already logged in."))
             return EXIT_FAILURE;
         return EXIT_QUIT;

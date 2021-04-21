@@ -37,8 +37,10 @@ int command_user(
         return EXIT_FAILURE;
     else if (status == EXIT_QUIT)
         return EXIT_SUCCESS;
+    if (client->session.is_logged) {
+        return send_response(
+            &client->sock, C530, "Can't change from guest user.");
+    }
     client->session.username = strdup(username);
-    if (send_response(&client->sock, C331, "Please specify the password."))
-        return EXIT_FAILURE;
-    return EXIT_SUCCESS;
+    return send_response(&client->sock, C331, "Please specify the password.");
 }
