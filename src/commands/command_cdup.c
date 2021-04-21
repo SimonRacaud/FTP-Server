@@ -20,7 +20,7 @@ int command_cdup(__attribute__((unused)) app_t *app, connection_t *client,
         free(client->workdir);
         client->workdir = result;
     }
-    if (send_response(&client->sock, C250, "Directory successfully changed."))
+    if (send_response(&client->sock, C200, "Directory successfully changed."))
         return EXIT_FAILURE;
     return EXIT_SUCCESS;
 }
