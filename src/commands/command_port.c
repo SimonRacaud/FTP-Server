@@ -67,7 +67,7 @@ int command_port(
     dchannel_list_clean(&client->channel_list);
     if (parse_args(&args, request->argv))
         return send_response(&client->sock, C500, "Bad parameters.");
-    node = dchannel_create(PASSIVE, args.port, args.ip);
+    node = dchannel_create(ACTIVE, args.port, args.ip);
     if (!node) {
         return send_response(&client->sock, C500, "An error occurred.");
     }
