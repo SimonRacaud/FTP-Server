@@ -13,10 +13,11 @@ static int child_job(data_channel_t *chan)
     active_args_t *args = &chan->args_active;
 
     if (chan->mode == ACTIVE) {
-        if (!args)
+        if (!args) {
             return EXIT_FAILURE;
-        if (socket_client_connect(&chan->sock, args->port, args->ip))
+        }else if (socket_client_connect(&chan->sock, args->port, args->ip)) {
             return EXIT_FAILURE;
+        }
     } else if (chan->mode == PASSIVE && chan->sock.fd == -1) {
         if (socket_server_connect(&chan->sock, chan->passive_server.fd)) {
             return EXIT_FAILURE;
