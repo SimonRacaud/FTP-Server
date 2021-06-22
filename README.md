@@ -7,5 +7,3 @@ Grade: A
 
 # Usage
 `make && ./myftp -h`
-
-
